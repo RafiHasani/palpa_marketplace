@@ -20,7 +20,6 @@ dependencies:
   go_router: ^17.0.1
   smooth_page_indicator: ^2.0.1
   cached_network_image: ^3.4.1
-  connectivity_plus: ^7.1.1
   shared_preferences: ^2.5.4
   url_launcher: ^6.3.2
   equatable: ^2.0.7
@@ -33,6 +32,7 @@ dependencies:
   path_provider: ^2.1.5
   flutter_quill: ^11.5.0
   share_plus: ^12.0.1
+  connectivity_plus: ^7.2.0
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +61,8 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
   generate: true
+  config:
+    enable-swift-package-manager: false
 
   assets:
     - assets/images/
