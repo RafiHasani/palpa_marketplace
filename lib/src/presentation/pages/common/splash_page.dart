@@ -54,21 +54,30 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         auth.changeStateToAuth(user: user, token: authToken);
 
         if (mounted && (user.isProducer ?? false)) {
-          context.go(ProducerHomePage.path);
+          await Future.delayed(Duration(milliseconds: 500)).then((_) {
+            navigateTo(ProducerHomePage.path);
+          });
         } else {
-          context.go(HomePage.path);
+          await Future.delayed(Duration(milliseconds: 500)).then((_) {
+            navigateTo(HomePage.path);
+          });
         }
-
-        Future.microtask(() => ref.read(networkStatusProvider));
 
         return true;
       } else {
-        context.go(HomePage.path);
+        await Future.delayed(Duration(milliseconds: 500)).then((_) {
+          navigateTo(HomePage.path);
+        });
+
         return false;
       }
     } catch (_) {}
 
     return false;
+  }
+
+  void navigateTo(String path) {
+    context.go(path);
   }
 
   @override
@@ -77,25 +86,25 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       extendBody: true,
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.whiteColor,
-      body: SafeArea(
-        bottom: true,
-        child: Stack(
-          fit: .expand,
-          children: [
-            Container(
-              padding: .all(0.4.sw),
-              height: 120.h,
-              width: 120.w,
-              child: Image.asset('assets/images/luncher.png', fit: .contain),
+      body: Stack(
+        fit: .expand,
+        children: [
+          Image.asset(fit: .fill, 'assets/images/lunch_bg.png'),
+          Center(
+            child: SizedBox(
+              height: 280.h,
+              width: 320.w,
+              child: Image.asset('assets/images/logo2.png', fit: .contain),
             ),
-            PositionedDirectional(
-              start: 0,
-              end: 0,
-              bottom: 16.h,
-              child: ThreeDotLoader(size: 10, color: AppColors.primaryColor),
-            ),
-          ],
-        ),
+          ),
+
+          PositionedDirectional(
+            start: 0,
+            end: 0,
+            bottom: 16.h,
+            child: ThreeDotLoader(size: 10, color: AppColors.primaryColor),
+          ),
+        ],
       ),
     );
   }
