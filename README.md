@@ -137,18 +137,4 @@ Our mission is to:
 
 ---
 
-## 🔒 Environment Variables
-
-The application uses environment variables to keep sensitive configuration separate from the source code.
-
-Example:
-
-```env
-API_BASE_URL=https://your-api.com
-```
-
-Do **not** commit your `.env` file to version control.
-
----
-
 Made with ❤️ using Flutter.
